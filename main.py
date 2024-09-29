@@ -10,6 +10,12 @@ def main():
     
     screen=pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # create clock
+    clock = pygame.time.Clock()
+
+    # delta time  variable
+    dt = 0
+
     # setting up the main loop (infinite Loop)
 
     while True:
@@ -23,6 +29,8 @@ def main():
 
         # Refresh the display
         pygame.display.flip()
+
+        dt= clock.tick(60) / 1000 # converts miliseconds to seconds.
 
 
 if __name__ == "__main__":

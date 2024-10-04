@@ -4,7 +4,7 @@ importlib.reload(constants)
 
 import pygame
 from pygame.math import Vector2
-from constants import PLAYER_TURN_SPEED, PLAYER_RADIUS
+from constants import *
 
 
 #Referencing CircleShape from circleshape.py
@@ -32,6 +32,14 @@ class Player(CircleShape):
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
 
+    #Move the player
+
+    def move(self,dt):
+        direction_vector = Vector2(0,1)
+        direction_vector= direction_vector.rotate(self.rotation)
+        movement_vector = direction_vector * PLAYER_SPEED * dt
+        self.position += movement_vector
+
     # Update method
 
     def update(self, dt):
@@ -43,6 +51,11 @@ class Player(CircleShape):
         if keys[pygame.K_d]:
             #Rotate right (clockwise- positive dt)
             self.rotate(dt)
+        if keys[pygame.K_w]:
+            self.move(dt)
+        if keys[pygame.K_s]:
+            self.move(-dt)
+
 
     # Triangle mehtod
 
